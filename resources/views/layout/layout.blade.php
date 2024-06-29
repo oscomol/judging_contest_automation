@@ -28,7 +28,7 @@
 
             <div class="logoCont" id="mainLogoCont">
                 <img src="/Image/missq.jpg" class="logo">
-                <h5 style="color: white;">Administrator</h5>
+                <h5 style="color: black;">Administrator</h5>
             </div>
 
             <h5 class="d-none m-auto" id="jca">JCA</h5>
@@ -114,7 +114,7 @@
                 if (pageWidth < 900) {
                     $("#sidebar").removeClass("expand");
                     $("#mainLogoCont").removeClass().addClass('d-none');
-                    $("#jca").removeClass().addClass('m-auto mt-3 text-white');
+                    $("#jca").removeClass().addClass('m-auto mt-3 text-dark');
                 }else{
                     $("#sidebar").addClass("expand");
                     $("#mainLogoCont").removeClass().addClass('mainLogoCont');
@@ -206,7 +206,7 @@
         min-width: 70px;
         z-index: 1000;
         transition: all .25s ease-in-out;
-        background-color: #ac663e;
+        background-color: #C4A484;
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -267,7 +267,7 @@
 
     a.sidebar-link {
         padding: .625rem 1.625rem;
-        color: #FFF;
+        color: black;
         display: block;
         font-size: 0.9rem;
         white-space: nowrap;
@@ -368,7 +368,7 @@
         gap: 7px;
     }
     .header{
-        background: #cc9767;
+        background: #F5F5DC;
     }
     .logo{
         width: 80px;

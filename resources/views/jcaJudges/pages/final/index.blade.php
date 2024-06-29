@@ -2,7 +2,7 @@
 
 
 @section('judgesNavs')
-<nav class="navbar navbar-expand-md shadow-none" style="background: #cc9767;">
+<nav class="navbar navbar-expand-md shadow-none" style="background: #F5F5DC;">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
