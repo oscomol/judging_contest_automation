@@ -23,11 +23,12 @@
                     <input type="number" class="form-control form-control-sm" id="semiContestant"
                         placeholder="Semi contestant">
                     <button type="submit" class="btn btn-primary btn btn-sm ml-3" id="submitFinalCont" disabled>Submit</button>
+                    <button type="button" class="btn btn-sm btn btn-secondary" id="print">Print</button>
                 </div>
             </div>
 
             <div class="card-body p-0">
-                <table class="table table-sm table-bordered">
+                <table class="table table-sm table-bordered" id="myTable">
                     <thead>
                         <tr class="judges">
                             <th></th>
@@ -69,7 +70,7 @@
                 success: function(data) {
                     console.log(data)
                     $('#loading').removeClass().addClass('d-none');
-                    $('#addFinalContestnt').removeClass().addClass('');
+                    $('#addFinalContestnt').removeClass().addClass('mt-3');
 
                     const contestants = data.contestants;
                     const judges = data.judges;

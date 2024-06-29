@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\Contestant;
 use App\Models\Preliminary;
 use Illuminate\Http\Request;
-use DB;
-
 class PreliminaryController extends Controller
 {
     public function index()
@@ -56,7 +54,7 @@ class PreliminaryController extends Controller
 
         return view('jcaJudges.pages.pre.index', [
             'contestants' => $sortedContestants->sortBy('contestantNum'),
-            'isRecorded' => $isRecorded,
+            'isRecorded' => $mappedContestants->count() < 1 ? false:$isRecorded,
         ]);
     }
 

@@ -59,31 +59,31 @@
                         <tr>
                             <th scope="row">Chest</th>
                             <td>
-                                {{ $contestant->chest }}
+                                {{ $contestant->chest }} cm
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">Waist</th>
                             <td>
-                                {{ $contestant->waist }}
+                                {{ $contestant->waist }} cm
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">Height</th>
                             <td>
-                                {{ $contestant->height }}
+                                {{ $contestant->height }} cm
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">Weight</th>
                             <td>
-                                {{ $contestant->weight }}
+                                {{ $contestant->weight }} kg
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">Hips</th>
                             <td>
-                                {{ $contestant->hips }}
+                                {{ $contestant->hips }} cm
                             </td>
                         </tr>
                     </tbody>

@@ -3,7 +3,7 @@
     <form action="/jca/events/search" method="GET">
         @csrf
         @method("GET")
-        <div class="input-group mb-3 d-none d-md-flex" style="width: 250px;">
+        <div class="input-group d-none d-md-flex" style="width: 250px;">
             <input type="text" class="form-control" placeholder="Search event here" aria-label="Recipient's username" name="search" aria-describedby="button-addon2">
             <button class="btn btn-primary" type="submit" id="button-addon2">
                 <li class="fa fa-search"></li>
@@ -12,7 +12,7 @@
     </form>
 
 
-    <button type="button" class="btn btn-outline-dark border-0 mb-3 d-md-none" data-bs-toggle="modal"
+    <button type="button" class="btn btn-outline-dark border-0 d-md-none" data-bs-toggle="modal"
         data-bs-target="#searchEvent">
         <li class="fa fa-search"></li>
     </button>

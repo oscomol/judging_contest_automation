@@ -56,7 +56,7 @@ class SwimwearCtrl extends Controller
 
     return view('jcaJudges.pages.pre.swimwear', [
        'contestants' => $mappedContestants->sortBy('contestantNum'),
-        'isRecorded' => $isRecorded
+       'isRecorded' => $mappedContestants->count() < 1 ? false:$isRecorded,
     ]);
     }
 

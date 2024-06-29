@@ -2,27 +2,26 @@
 
 
 @section('judgesNavs')
-    <ul class="sidebar-nav">
-        <li class="sidebar-item">
-            <a href="{{ route('final.index') }}" class="sidebar-link">
-                <i class="fa fa-tachometer"></i>
-                <span>Gown</span>
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a href="{{ route('semifinal.index') }}" class="sidebar-link">
-                <i class="fa fa-calendar"></i>
-                <span>Semifinal</span>
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a href="{{ route('finalJudge.index') }}" class="sidebar-link">
-                <i class="fa fa-calendar"></i>
-                <span>Final</span>
-            </a>
-        </li>
-
-    </ul>
+<nav class="navbar navbar-expand-md shadow-none" style="background: #cc9767;">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('final.index') ? 'active' : '' }}" aria-current="page"href="{{ route('final.index') }}">Gown</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{ route('semifinal.index') }}">Semifinal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{ route('finalJudge.index') }}">Final</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 @endsection
 
 
@@ -48,7 +47,7 @@
                                    
                                 @else
                                     <button type="submit" id="swimwearSubmitButton"
-                                        class="btn btn-primary btn btn-sm">Submit</button>
+                                        class="btn btn-primary btn btn-sm" disabled>Submit</button>
                                 @endif
                             </span>
                         </h3>
@@ -198,6 +197,14 @@
                     }
                 });
 
+                const isMoreThan75 = totalRate.every(rate => rate > 75);
+              
+                if (isMoreThan75) {
+                    $('#swimwearSubmitButton').prop('disabled', false);
+                } else {
+                    $('#swimwearSubmitButton').prop('disabled', true);
+                }
+
             });
 
             $('#addSwimwear').submit(function() {
@@ -226,8 +233,8 @@
                         projection: projectionInput.val(),
                         total
                     };
-
                     rowData.push(rowObj);
+                  
                 });
 
                 const filteredData = rowData.filter(data => data.total > 75);

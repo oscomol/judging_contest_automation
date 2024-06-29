@@ -1,27 +1,26 @@
 @extends('layout.judgesLayout')
 
 @section('judgesNavs')
-    <ul class="sidebar-nav">
-        <li class="sidebar-item">
-            <a href="{{ route('final.index') }}" class="sidebar-link">
-                <i class="fa fa-tachometer"></i>
-                <span>Gown</span>
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a href="{{ route('semifinal.index') }}" class="sidebar-link">
-                <i class="fa fa-calendar"></i>
-                <span>Semifinal</span>
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a href="{{ route('finalJudge.index') }}" class="sidebar-link">
-                <i class="fa fa-calendar"></i>
-                <span>Final</span>
-            </a>
-        </li>
-
-    </ul>
+<nav class="navbar navbar-expand-md shadow-none" style="background: #cc9767;">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page"href="{{ route('final.index') }}">Gown</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{ route('semifinal.index') }}">Semifinal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('finalJudge.index') ? 'active' : '' }}" aria-current="page" href="{{ route('finalJudge.index') }}">Final</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 @endsection
 
 @section('judgesCont')

@@ -97,53 +97,55 @@ class EventController extends Controller
             'event' => $events->first(),
             'contestants' => $contestants
         ]);
-        // $contestants = Contestant::all()->where('eventID', $request->event);
-        // $preliminaryJudges = Judge::where([
-        //     ['eventID', '=', $request->event],
-        //     ['category', '=', 'Preliminary']
-        // ])->get();
-
-        // $finalJudges = Judge::where([
-        //     ['eventID', '=', $request->event],
-        //     ['category', '=', 'Final']
-        // ])->get();
-
-        // if(!session('username')){
-        //     return redirect(route('admin.login'));
-        // }else{
-        //     if($events->count() > 0){
-        //         return view('facilitator.singleEvent.index', [
-        //             'event' => $events->first(),
-        //             'contestants' => $contestants,
-        //             'preliminaryJudges' => $preliminaryJudges,
-        //             'finalJudges' => $finalJudges
-        //         ]);
-        //     }else{
-        //         return redirect(route('event.index'));
-        //     }
-        // }
      }
 
      public function dashboard()
      {
-
-        $currentMonth = date('m');
-        $currentYear = date('Y'); 
-    
-        $monthsToday = $currentYear . '-' . $currentMonth;
-
-        $monthsEventCount = Event::where('preliminaryDate', 'LIKE', $monthsToday . '%')->count();
-        $ongoingCount = Event::where('isDone', 1)->count();
-
+         $currentYear = date('Y'); // Get current year
+         
+         // Array of month names with their respective numbers
+         $monthNames = [
+             '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
+             '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
+             '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
+         ];
+         
+         // Initialize an array to store counts for each month with month names
+         $monthsEventCounts = [];
+         
+         // Loop through each month of the current year
+         for ($month = 1; $month <= 12; $month++) {
+             // Format month to two digits (01 for January, 02 for February, etc.)
+             $formattedMonth = str_pad($month, 2, '0', STR_PAD_LEFT);
+             
+             // Concatenate year and month (e.g., 2024-01 for January 2024)
+             $monthsToday = $currentYear . '-' . $formattedMonth;
+             
+             // Get count of events for the current month
+             $monthsEventCount = Event::where('preliminaryDate', 'LIKE', $monthsToday . '%')->count();
+             
+             // Use month name instead of formatted month number as key
+             $monthName = $monthNames[$formattedMonth];
+             
+             // Store the count in the array with the month as key
+             $monthsEventCounts[$formattedMonth] = [
+                 'monthName' => $monthName,
+                 'count' => $monthsEventCount
+             ];
+         }
+         
+         // Additional counts
+         $ongoingCount = Event::where('isDone', 1)->count();
+         
+         // Fetch other data as needed
          $data = [
              'recentEvent' => Event::latest()->take(5)->get(),
              'eventCount' => Event::count(),
              'adminCount' => Administrator::count(),
-             'monthsEventCount' => $monthsEventCount,
+             'monthsEventCounts' => array_values($monthsEventCounts), // Array of event counts per month with month names, sorted by month number
              'ongoingCount' => $ongoingCount
          ];
-     
+         
          return response()->json($data);
-     }
-     
+     }     
 }

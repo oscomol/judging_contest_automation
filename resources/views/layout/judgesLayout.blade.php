@@ -24,44 +24,48 @@
     </div>
     <div class="wrapper" style="display: none;">
         <aside id="sidebar" class="expand">
-            <div class="d-flex">
-                <button class="toggle-btn" type="button">
-                    <i class="lni lni-grid-alt"></i>
-                </button>
-                <div class="sidebar-logo">
-                    <a href="#">JCA</a>
-                </div>
+            
+            <div class="logoCont" id="mainLogoCont">
+                <img src="/Image/missq.jpg" class="logo">
+                <h5 style="color: white;">{{ session('judge_name') }}</h5>
             </div>
 
-            @yield('judgesNavs')
+            <h5 class="d-none m-auto" id="jca">JCA</h5>
 
-            <button type="button" class="btn btn-primary d-flex justify-content-start customBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <li class="fa fa-eye"></li>
-                Cover
-              </button>
+              <ul class="sidebar-nav">
+               <li class="sidebar-item">
+                <button type="button" class="w-100 btn btn-primary d-flex justify-content-start customBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <li class="fa fa-eye"></li>
+                    <span id="cover">Cover</span>
+                  </button>
+               </li>
+              </ul>
 
             <div class="sidebar-footer">
                 <a class="sidebar-link" data-bs-toggle="modal" data-bs-target="#logout">
                     <i class="lni lni-exit"></i>
-                    <span>{{ session('judge_name') }}</span>
+                    <span>Logout</span>
                 </a>
             </div>
         </aside>
         <div class="main">
-         
-            <div
-                class="container-fluid d-flex justify-content-between align-items-center px-4 pt-3 pb-1 mb-4 shadow-sm">
-                <h3>
-                    {{ session('event_name') }}
-                </h3>
-            </div>
-            <main class="content px-3">
+
+            <header>
+                <div class="d-flex justify-content-between w-100">
+                    <h3>
+                        {{ session('event_name') }}
+                    </h3>
+                    <p id="time">00:00</p>
+                </div>
+                @yield('judgesNavs')
+            </header>
+
+
+            <main class="content px-3 mt-3">
                 <input type="hidden" value="{{session('event_id')}}" id="eventID">
                 <input type="hidden" value="{{session('access_code')}}" id="accessCode">
                 @yield('judgesCont')
             </main>
-
-
 
             <!-- Modal -->
             <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -111,8 +115,16 @@
             const pageWidth = $(document).width();
 
             if (pageWidth < 900) {
-                $("#sidebar").removeClass("expand");
-            }
+                    $("#sidebar").removeClass("expand");
+                    $("#mainLogoCont").removeClass().addClass('d-none');
+                    $("#jca").removeClass().addClass('m-auto mt-3 text-white');
+                    $("#cover").hide();
+                }else{
+                    $("#sidebar").addClass("expand");
+                    $("#mainLogoCont").removeClass().addClass('mainLogoCont');
+                    $("#jca").removeClass().addClass('d-none');
+                    $("#cover").show();
+                }
         }
 
         setTimeout(() => {
@@ -142,10 +154,13 @@
         $("#btnUp").click(function() {
             $('.main').scrollTop(0);
         });
+
+        setInterval(() => {
+            const time = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Manila' });
+            $('#time').text(time)
+        }, 1000);
     });
 </script>
-
-
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -192,7 +207,7 @@
         min-width: 70px;
         z-index: 1000;
         transition: all .25s ease-in-out;
-        background-color: #0e2238;
+        background-color: #ac663e;
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -348,11 +363,11 @@
         position: fixed;
         right: 10;
         bottom: 20;
-        color: white
+        color: white;
     }
     .customBtn{
         padding-left: 35px;
-        background-color: #0e2238;
+        background-color: #ac663e;
         border: 0px;
     }
     .customBtn:hover{
@@ -361,5 +376,23 @@
     }
     .customBtn li{
         padding-right: 20px;
+    }
+    #mainLogoCont{
+        margin-top: 15px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+    }
+    header{
+        background: #cc9767;
+        padding: 10px;
+    }
+   
+    .logo{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
     }
 </style>

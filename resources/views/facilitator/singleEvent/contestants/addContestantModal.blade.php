@@ -80,35 +80,35 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="chest" class="form-label">Bust</label>
+                                <label for="chest" class="form-label">Bust (cm)</label>
                                 <input type="number" class="form-control" id="chest"
-                                    placeholder="Enter chest measurement here" name="chest" required>
+                                    placeholder="Enter chest" name="chest" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="waist" class="form-label">Waist</label>
+                                <label for="waist" class="form-label">Waist (cm)</label>
                                 <input type="number" class="form-control" id="waist"
-                                    placeholder="Enter waist measurement here" name="waist" required>
+                                    placeholder="Enter waist" name="waist" required>
                             </div>
                         </div>
 
                         <div class="d-flex gap-2">
                             <div class="mb-3">
-                                <label for="height" class="form-label">Height</label>
+                                <label for="height" class="form-label">Height (cm)</label>
                                 <input type="number" class="form-control" id="height"
-                                    placeholder="00 cm" name="height" required>
+                                    placeholder="Enter height" name="height" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="weight" class="form-label">Weight</label>
+                                <label for="weight" class="form-label">Weight (kg)</label>
                                 <input type="number" class="form-control" id="weight"
-                                    placeholder="Enter weight here" name="weight" required>
+                                    placeholder="Enter weight" name="weight" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="hips" class="form-label">Hips</label>
+                                <label for="hips" class="form-label">Hips (cm)</label>
                                 <input type="number" class="form-control" id="hips"
-                                    placeholder="Enter hips measurement here" name="hips" required>
+                                    placeholder="Enter hips" name="hips" required>
                             </div>
                         </div>
 

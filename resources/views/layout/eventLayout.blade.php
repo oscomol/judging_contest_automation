@@ -30,14 +30,15 @@
 
     <div class="wrapper" style="display: none;">
         <aside id="sidebar" class="expand">
-            <div class="d-flex">
-                <button class="toggle-btn" type="button">
-                    <i class="lni lni-grid-alt"></i>
-                </button>
-                <div class="sidebar-logo">
-                    <a href="#">JCA</a>
-                </div>
+            
+            <div class="logoCont" id="mainLogoCont">
+                <img src="/Image/missq.jpg" class="logo">
+                <h5 style="color: white;">Administrator</h5>
             </div>
+
+            <h5 class="d-none m-auto" id="jca">JCA</h5>
+
+
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="{{ route('eventShow.index', ['event' => $event->id]) }}" class="sidebar-link">
@@ -79,7 +80,8 @@
 
 
         <div class="main">
-            <nav class="navbar navbar-expand-md shadow-md navbar-light bg-light px-2 py-3">
+            <input type="hidden" value="{{$event->title}}" id="title">
+            <nav class="navbar navbar-expand-md shadow-md header px-2 py-3">
                 <div class="container-fluid">
                     <a class="navbar-brand fs-xxl" href="#">{{ $event->title }}</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -90,28 +92,27 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="{{ route('preliminaryRatings.index', ['event' => $event->id]) }}"
-                                    class="nav-link">Pre-interview</a>
+                                <a href="{{ route('preliminaryRatings.index', ['event' => $event->id]) }}" class="nav-link {{ request()->routeIs('preliminaryRatings.index') ? 'active' : '' }}">Pre-interview</a>
                             </li>
                             <li class="nav-item d-none d-sm-inline-block">
                                 <a href="{{ route('swimwearRatings.index', ['event' => $event->id]) }}"
-                                    class="nav-link">Swimwear</a>
+                                    class="nav-link {{ request()->routeIs('swimwearRatings.index') ? 'active' : '' }}">Swimwear</a>
                             </li>
                             <li class="nav-item d-none d-sm-inline-block">
                                 <a href="{{ route('gownRatings.index', ['event' => $event->id]) }}"
-                                    class="nav-link">Gown</a>
+                                    class="nav-link {{ request()->routeIs('gownRatings.index') ? 'active' : '' }}">Gown</a>
                             </li>
                             <li class="nav-item d-none d-sm-inline-block">
                                 <a href="{{ route('ranking.index', ['event' => $event->id]) }}"
-                                    class="nav-link">Ranking</a>
+                                    class="nav-link {{ request()->routeIs('ranking.index') ? 'active' : '' }}">Ranking</a>
                             </li>
                             <li class="nav-item d-none d-sm-inline-block">
                                 <a href="{{ route('semifinalAdmin.index', ['event' => $event->id]) }}"
-                                    class="nav-link">Semifinal</a>
+                                    class="nav-link {{ request()->routeIs('semifinalAdmin.index') ? 'active' : '' }}">Semifinal</a>
                             </li>
                             <li class="nav-item d-none d-sm-inline-block">
                                 <a href="{{ route('finalRatings.index', ['event' => $event->id]) }}"
-                                    class="nav-link">Final</a>
+                                    class="nav-link {{ request()->routeIs('finalRatings.index') ? 'active' : '' }}">Final</a>
                             </li>
                         </ul>
                     </div>
@@ -161,6 +162,12 @@
 
                 if (pageWidth < 900) {
                     $("#sidebar").removeClass("expand");
+                    $("#mainLogoCont").removeClass().addClass('d-none');
+                    $("#jca").removeClass().addClass('m-auto mt-3 text-white');
+                }else{
+                    $("#sidebar").addClass("expand");
+                    $("#mainLogoCont").removeClass().addClass('mainLogoCont');
+                    $("#jca").removeClass().addClass('d-none');
                 }
             }
 
@@ -191,6 +198,23 @@
             $("#btnUp").click(function() {
                 $('.main').scrollTop(0);
             });
+
+            $('#print').click(function(){
+                var table = document.getElementById("myTable");
+                var title = document.getElementById("title").value;
+                var newWin = window.open('', 'Print-Window');
+
+                const category = window.location.pathname.split('/')[2];
+                const transformedCategory = category.charAt(0).toUpperCase() + category.slice(1);
+                const titleWord = title += '-' +transformedCategory;
+                
+                newWin.document.open();
+                newWin.document.write(`<html><head><title>${titleWord}</title><style>@media print {table {width: 100%;border-collapse: collapse;}th, td {border: 1px solid black;padding: 8px;text-align: center;}th {background-color: #f2f2f2;}}</style></head><body>' + ${table.outerHTML} + '</body></html>`);
+                newWin.document.close();
+                newWin.print();
+                newWin.close();
+            })
+
         });
     </script>
 
@@ -251,6 +275,7 @@
         display: flex;
         flex-direction: column;
         height: 100vh;
+        background-color: #ac663e;
 
     }
 
@@ -401,5 +426,22 @@
     color: white;
     z-index: 999;
 }
+
+#mainLogoCont{
+        margin-top: 15px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+    }
+    .header{
+        background: #cc9767;
+    }
+    .logo{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
 
 </style>

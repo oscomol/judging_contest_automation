@@ -22,11 +22,12 @@
                 <div class="d-flex gap-2">
                     <input type="number" class="form-control form-control-sm" id="topContestant" placeholder="Semi contestant" >
                     <button type="submit" class="btn btn-primary btn-sm ml-3" id="submitSemiCont">Submit</button>
+                    <button type="button" class="btn btn-sm btn btn-secondary" id="print">Print</button>
                 </div>
             </div>
 
             <div class="card-body p-0">
-                <table class="table table-sm table-bordered">
+                <table class="table table-sm table-bordered" id="myTable">
                     <thead>
                         <tr>
                             <th></th>
@@ -74,7 +75,7 @@
                 success: function(data) {
                    setTimeout(() => {
                     $('#loading').removeClass().addClass('d-none');
-                    $('#addSemiContestant').removeClass().addClass('');
+                    $('#addSemiContestant').removeClass().addClass('mt-3');
                    }, 1000);
                     const contestants = data.contestants;
                     contestantList = contestants;

@@ -24,14 +24,15 @@
     </div>
     <div class="wrapper" style="display: none;">
         <aside id="sidebar" class="expand">
-            <div class="d-flex">
-                <button class="toggle-btn" type="button">
-                    <i class="lni lni-grid-alt"></i>
-                </button>
-                <div class="sidebar-logo">
-                    <a href="#">JCA</a>
-                </div>
+
+
+            <div class="logoCont" id="mainLogoCont">
+                <img src="/Image/missq.jpg" class="logo">
+                <h5 style="color: white;">Administrator</h5>
             </div>
+
+            <h5 class="d-none m-auto" id="jca">JCA</h5>
+
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="{{ url('/jca') }}" class="sidebar-link">
@@ -62,7 +63,7 @@
         </aside>
         <div class="main">
             <div
-                class="container-fluid d-flex justify-content-between align-items-center px-4 pt-3 pb-1 mb-4 shadow-sm">
+                class="container-fluid d-flex justify-content-between align-items-center px-4 pt-3 pb-1 mb-4 header">
                 <h3>
                     @yield('title')
                 </h3>
@@ -112,6 +113,12 @@
 
                 if (pageWidth < 900) {
                     $("#sidebar").removeClass("expand");
+                    $("#mainLogoCont").removeClass().addClass('d-none');
+                    $("#jca").removeClass().addClass('m-auto mt-3 text-white');
+                }else{
+                    $("#sidebar").addClass("expand");
+                    $("#mainLogoCont").removeClass().addClass('mainLogoCont');
+                    $("#jca").removeClass().addClass('d-none');
                 }
             }
 
@@ -199,7 +206,7 @@
         min-width: 70px;
         z-index: 1000;
         transition: all .25s ease-in-out;
-        background-color: #0e2238;
+        background-color: #ac663e;
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -351,5 +358,21 @@
         right: 10;
         bottom: 20;
         color: white
+    }
+    #mainLogoCont{
+        margin-top: 15px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+    }
+    .header{
+        background: #cc9767;
+    }
+    .logo{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
     }
 </style>

@@ -14,11 +14,13 @@
 
     <div class="d-none" id="result">
         <div class="card-header">
-            <h3 class="card-title">Tabulation</h3>
+            <h3 class="card-title">Tabulation
+                <button class="btn btn-sm btn btn-secondary float-end" id="print">Print</button>
+            </h3>
         </div>
 
         <div class="card-body p-0">
-            <table class="table table-sm table-bordered">
+            <table class="table table-sm table-bordered" id="myTable">
                 <thead>
                     <tr class="judges">
                         <th></th>
@@ -50,7 +52,7 @@
                 dataType: 'json',
                 success: function(data) {
                     $('#loading').removeClass().addClass('d-none');
-                    $('#result').removeClass().addClass('card');
+                    $('#result').removeClass().addClass('card mt-3');
 
                     const contestants = data.contestants;
                     const judges = data.judges;

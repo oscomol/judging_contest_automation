@@ -55,7 +55,7 @@ class GownCtrl extends Controller
 
         return view('jcaJudges.pages.final.index', [
            'contestants' => $mappedContestants->sortBy('contestantNum'),
-            'isRecorded' => $isRecorded
+           'isRecorded' => $mappedContestants->count() < 1 ? false:$isRecorded,
         ]);
     }
 

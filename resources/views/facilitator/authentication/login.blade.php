@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <di class="container">
+    <div class="container">
     <div class="d-flex-block  d-md-flex w-75">
         <div class="w-100 w-md-50">
             <img src="/Image/missq.jpg" width="100%" height="100%" alt="MissQ image">
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-    </di>
+    </div>
     </div>
 
     <!-- Bootstrap JS -->
