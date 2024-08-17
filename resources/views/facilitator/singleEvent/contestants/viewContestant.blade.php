@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-6 mb-3">
                         <div class="rounded p-2" id="photoCont">
-                            <img src="https://res.cloudinary.com/dl5lteg8a/image/upload/v1719283241/{{$contestant->photo}}" class="rounded" id="file-preview" width="100%" height="100%"
+                            <img src="/contestant/image/{{$contestant->photo}}" class="rounded" id="file-preview" width="100%" height="100%"
                                 class="rounded">
                         </div>
                     </div>
@@ -32,8 +32,6 @@
                         </p>
                     </div>
                 </div>
-
-
 
 
                 <table class="table">
@@ -59,31 +57,31 @@
                         <tr>
                             <th scope="row">Chest</th>
                             <td>
-                                {{ $contestant->chest }} cm
+                                {{ $contestant->chest }} (ft)
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">Waist</th>
                             <td>
-                                {{ $contestant->waist }} cm
+                                {{ $contestant->waist }} (ft)
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">Height</th>
                             <td>
-                                {{ $contestant->height }} cm
+                                {{ $contestant->height }} (ft)
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">Weight</th>
                             <td>
-                                {{ $contestant->weight }} kg
+                                {{ $contestant->weight }} (kg)
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">Hips</th>
                             <td>
-                                {{ $contestant->hips }} cm
+                                {{ $contestant->hips }} (ft)
                             </td>
                         </tr>
                     </tbody>

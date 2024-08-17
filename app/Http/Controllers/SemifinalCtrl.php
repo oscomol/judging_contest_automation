@@ -157,7 +157,7 @@ class SemifinalCtrl extends Controller
         $rank = 1;
         $prevTotal = null;
         $sortedContestants = $sortedContestants->map(function ($con) use (&$rank, &$prevTotal) {
-            if ($con['total'] !== null) {
+            if ($con['total'] !== null && $con['total'] > 0) {
                 if ($prevTotal !== null && $con['total'] < $prevTotal) {
                     $rank++;
                 }
@@ -168,6 +168,8 @@ class SemifinalCtrl extends Controller
             }
             return $con;
         });
+
+        $sortedContestants = $sortedContestants->sortBy('contestantNum')->values();
     
         $data = [
             'contestants' => $sortedContestants,

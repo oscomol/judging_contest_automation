@@ -39,9 +39,9 @@ class ContestantController extends Controller
     public function store(Request $request) {
 
         try{
-        $response = cloudinary()->upload($request->file('photo')->getRealPath())->getSecurePath();
-
-        $filename = basename($response);
+            $file= $request->file('photo');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('contestant/image'), $filename);
 
         $validatedData = $request->validate([
             'name' => 'required',
@@ -76,7 +76,8 @@ class ContestantController extends Controller
             'event' => $validatedData['eventID']
         ]));
         }catch(\Exception $e){
-            return back()->with('contestantCreateErr',  'Registration failed! Try again with unique contestant no.');
+            dd($e);
+            return back()->with('contestantCreateErr',  'Registration failed. Try agin!');
         }
     }
 
@@ -86,9 +87,8 @@ class ContestantController extends Controller
             $contestant = Contestant::findOrFail($request -> contestantID);
             $file= $request->file('photo');
             if($file){
-                $response = cloudinary()->upload( $file->getRealPath())->getSecurePath();
-
-                $filename = basename($response);
+                $filename = date('YmdHi').$file->getClientOriginalName();
+                $file-> move(public_path('contestant/image'), $filename);
             
             $contestant->advocacy = $request->advocacy;
             $contestant->chest = $request->chest;

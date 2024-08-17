@@ -29,7 +29,7 @@
                         <div class="col-6 mb-3">
                             <div class="rounded f-flex flex-column p-2" id="photoCont">
 
-                                <img src="https://res.cloudinary.com/dl5lteg8a/image/upload/v1719283241/{{ $contestant->photo }}" alt="Preview Uploaded Image"
+                                <img src="/contestant/image/{{ $contestant->photo }}" alt="{{$contestant->photo}}"
                                 id="file-preview-{{$contestant->id}}" width="100%" height="80%" class="rounded">
 
                                 <div class="w-100 p-1 mt-1 rounded bg-primary">
@@ -82,15 +82,15 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="ches-{{$contestant->id}}t" class="form-label">Bust</label>
-                            <input type="number" class="form-control" id="chest-{{$contestant->id}}"
+                            <label for="ches-{{$contestant->id}}t" class="form-label">Bust (ft)</label>
+                            <input type="text" class="form-control numBustEdit" id="chest-{{$contestant->id}}"
                                 placeholder="Enter chest measurement here" name="chest" value={{ $contestant->chest }}
                                 required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="waist-{{$contestant->id}}" class="form-label">Waist</label>
-                            <input type="number" class="form-control" id="waist-{{$contestant->id}}"
+                            <label for="waist-{{$contestant->id}}" class="form-label">Waist (ft)</label>
+                            <input type="text" class="form-control numWaistEdit" id="waist-{{$contestant->id}}"
                                 placeholder="Enter waist measurement here" name="waist"
                                 value={{ $contestant->waist }} required>
                         </div>
@@ -98,21 +98,21 @@
 
                     <div class="d-flex gap-2">
                         <div class="mb-3">
-                            <label for="height-{{$contestant->id}}" class="form-label">Height</label>
-                            <input type="number" class="form-control" id="height-{{$contestant->id}}" placeholder="00 cm"
+                            <label for="height-{{$contestant->id}}" class="form-label">Height (ft)</label>
+                            <input type="text" class="form-control numHeightEdit" id="height-{{$contestant->id}}" placeholder="00 cm"
                                 name="height" value={{ $contestant->height }} required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="weight-{{$contestant->id}}" class="form-label">Weight</label>
+                            <label for="weight-{{$contestant->id}}" class="form-label">Weight (kg)</label>
                             <input type="number" class="form-control" id="weight-{{$contestant->id}}"
                                 placeholder="Enter weight here" name="weight" value={{ $contestant->weight }}
                                 required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="hips-{{$contestant->id}}" class="form-label">Hips</label>
-                            <input type="number" class="form-control" id="hips-{{$contestant->id}}"
+                            <label for="hips-{{$contestant->id}}" class="form-label">Hips (ft)</label>
+                            <input type="text" class="form-control numHipsEdit" id="hips-{{$contestant->id}}"
                                 placeholder="Enter hips measurement here" name="hips"
                                 value={{ $contestant->hips }} required>
                         </div>
@@ -133,3 +133,17 @@
         </div>
     </div>
 </div>
+
+<script>
+ document.addEventListener('DOMContentLoaded', function(){
+    var fields = document.querySelectorAll('.numBustEdit, .numWaistEdit, .numHeightEdit, .numHipsEdit');
+
+    fields.forEach(function(field) {
+        field.addEventListener('input', function() {
+            var curVal = this.value;
+            var sanitizedValue = curVal.replace(/[^0-9']/g, '');
+            this.value = sanitizedValue;
+        });
+    });
+});
+</script>

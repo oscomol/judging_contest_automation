@@ -57,7 +57,7 @@
             <div class="sidebar-footer">
                 <a class="sidebar-link" data-bs-toggle="modal" data-bs-target="#logout">
                     <i class="lni lni-exit"></i>
-                    <span>{{ session('username') }}</span>
+                    <span>Logout</span>
                 </a>
             </div>
         </aside>

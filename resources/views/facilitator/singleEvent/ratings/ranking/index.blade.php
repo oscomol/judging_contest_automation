@@ -21,7 +21,7 @@
                 <h3 class="card-title mr-4">Tabulation</h3>
                 <div class="d-flex gap-2">
                     <input type="number" class="form-control form-control-sm" id="topContestant" placeholder="Semi contestant" >
-                    <button type="submit" class="btn btn-primary btn-sm ml-3" id="submitSemiCont">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-sm ml-3" id="submitSemiCont" disabled>Submit</button>
                     <button type="button" class="btn btn-sm btn btn-secondary" id="print">Print</button>
                 </div>
             </div>
@@ -73,21 +73,23 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                   setTimeout(() => {
+                    console.log(data)
                     $('#loading').removeClass().addClass('d-none');
                     $('#addSemiContestant').removeClass().addClass('mt-3');
-                   }, 1000);
                     const contestants = data.contestants;
                     contestantList = contestants;
                     const isAtSemi = contestantList.filter(con => con.class !== "");
+                    const overallRanks = contestants.filter(rank => rank.overallRank !== '?');
 
-                    if (isAtSemi?.length) {
+                    if (isAtSemi?.length || !overallRanks?.length) {
                         $('#submitSemiCont').prop('disabled', true);
                         $('#topContestant').prop('readonly', true);
                         $('#topContestant').prop('type', 'text');
-                        $('#topContestant').val('Top ' + isAtSemi.length);
+                        $('#topContestant').val(!overallRanks?.length ? 'No ranking':'Top ' + isAtSemi.length);
+                    }else{
+                        $('#submitSemiCont').prop('disabled', false);
+                        $('#topContestant').prop('readonly', false);
                     }
-
 
                     displayCont(contestantList);
                 },
@@ -118,7 +120,7 @@
 
             $('#addSemiContestant').submit(function(event) {
                 event.preventDefault();
-
+                $('#submitSemiCont').prop('disabled', true);
                 const semi = $('#topContestant').val();
 
                 var url = $(this).attr("action");

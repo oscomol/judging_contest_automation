@@ -116,24 +116,38 @@ class RankingCtrl extends Controller
     
         $mappedContestants->transform(function ($con) {
             $total = 0;
-            if ($con->preliminaryRank > 0) {
+            
+            // Check preliminary rank
+            if ($con->preliminaryRank != "?") {
                 $total += $con->preliminaryRank;
             }
-            if ($con->swimwearRank > 0) {
+            
+            // Check swimwear rank
+            if ($con->swimwearRank != "?") {
                 $total += $con->swimwearRank;
             }
-            if ($con->gownRank > 0) {
+            
+            // Check gown rank
+            if ($con->gownRank != "?") {
                 $total += $con->gownRank;
             }
-            $con->total = $total;
+        
+            // Set total score
+            if ($total > 0) {
+                $con->total = $total;
+            } else {
+                $con->total = '?';
+            }
+            
             return $con;
         });
+        
 
         $mappedContestants = $mappedContestants->sortBy('total')->values();
         $rank = 1;
         $prevTotal = null;
         $mappedContestants->transform(function ($con) use (&$rank, &$prevTotal) {
-            if ($con->total > 0) {
+            if ($con->total > 0 && $con->total !== "?") {
                 if ($prevTotal !== null && $con->total > $prevTotal) {
                     $rank++;
                 }

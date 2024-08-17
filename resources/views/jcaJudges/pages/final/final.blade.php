@@ -74,7 +74,7 @@
                                 <th>
                                     <span
                                         style="visibility: hidden">{{ $contestant->id }}</span>{{ $contestant->contestantNum }}.
-                                    {{ $contestant->name }}slmksm
+                                    {{ $contestant->name }}
                                 </th>
                                 <td>
                                     @if ($contestant->beauty)

@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('address');
             $table->unsignedInteger('age');
-            $table->unsignedInteger('chest');
-            $table->unsignedInteger('waist');
-            $table->unsignedInteger('hips');
-            $table->unsignedInteger('height');
-            $table->unsignedInteger('weight');
+            $table->string('chest');
+            $table->string('waist');
+            $table->string('hips');
+            $table->string('height');
+            $table->string('weight');
             $table->unsignedInteger('contestantNum');
             $table->unsignedInteger('eventID');
             $table->timestamps();

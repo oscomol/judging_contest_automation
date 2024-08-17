@@ -33,12 +33,12 @@
                         <tr class="judges">
                             <th></th>
                         </tr>
-                    </thead>
-
-                    <tbody class="tbody">
                         <tr class="totalRow">
                             <th style="width: 240px">Contestant</th>
                         </tr>
+                    </thead>
+
+                    <tbody class="tbody">
 
                     </tbody>
 
@@ -77,12 +77,16 @@
                     contestantList = contestants;
 
                     const atFnal = contestantList.filter(con => con.class !== "");
+                    const overallRanks = contestants.filter(rank => rank.rank !== '?');
 
-                    if (atFnal?.length) {
+                    if (atFnal?.length || !overallRanks?.length) {
                         $('#submitFinalCont').prop('disabled', true);
                         $('#semiContestant').prop('readonly', true);
                         $('#semiContestant').prop('type', 'text');
-                        $('#semiContestant').val('Top ' + atFnal.length);
+                        $('#semiContestant').val(!overallRanks?.length ? 'No rankings':'Top ' + atFnal.length);
+                    }else{
+                        $('#submitFinalCont').prop('disabled', false);
+                        $('#semiContestant').prop('readonly', false);
                     }
 
                     displayJudges(judges);
@@ -96,7 +100,7 @@
 
             $('#semiContestant').change(function(){
                 const semi = $(this).val();  
-
+                $('#submitFinalCont').prop('disabled', true);
                 if(semi > 0){
                     $('#submitFinalCont').prop('disabled', false)
                 }else{

@@ -81,7 +81,11 @@
                             Are you sure to logout ?
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ route('admin.logout') }}" class="btn btn-primary">
+                            <a href="{{ route('judge.logout', [
+                            'event' => '?',
+                            'category' => '?',
+                            'accessCode' => '?'
+                            ]) }}" class="btn btn-primary">
                                 Yes
                             </a>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>

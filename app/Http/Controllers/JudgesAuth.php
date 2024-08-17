@@ -42,7 +42,7 @@ class JudgesAuth extends Controller
             }
 
         }else{
-            dd("NO");
+            return back()->with('error',  'Please check your access code');
         }
     }
 
@@ -50,6 +50,6 @@ class JudgesAuth extends Controller
     {
         Session::flush();
 
-        return view('jcajudges.home.logout')->with('out',  'Thank you for taking time!');
+        return redirect(route('judges.index'));
     }
 }

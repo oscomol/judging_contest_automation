@@ -1,6 +1,7 @@
 @extends('layout.eventLayout')
 
 @section('eventContent')
+
     <div class="d-flex flex-column align-items-center gap-2" id="loading">
         <br>
         <br>
@@ -51,6 +52,7 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
+                    console.log(data)
                     $('#loading').removeClass().addClass('d-none');
                     $('#result').removeClass().addClass('card mt-3');
 
@@ -94,7 +96,7 @@
                         <th>${contestant.contestantNum}. ${contestant.name}</th>
                         ${totalHtml}
                         <th>${contestant.total}</th>
-                        <th>${contestant.rank}</th>
+                        <th>${contestant.rank}${contestant.rank !== '?' && contestant.rank === 1 ? '<li class="fa fa-user"></li>' : ''}</th>
                     </tr>
                 `;
             }

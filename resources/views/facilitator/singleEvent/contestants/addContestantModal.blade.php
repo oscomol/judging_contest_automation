@@ -80,22 +80,22 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="chest" class="form-label">Bust (cm)</label>
-                                <input type="number" class="form-control" id="chest"
+                                <label for="chest" class="form-label">Bust (ft)</label>
+                                <input type="text" class="form-control numBust" id="chest"
                                     placeholder="Enter chest" name="chest" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="waist" class="form-label">Waist (cm)</label>
-                                <input type="number" class="form-control" id="waist"
+                                <label for="waist" class="form-label">Waist (ft)</label>
+                                <input type="text" class="form-control numWaist" id="waist"
                                     placeholder="Enter waist" name="waist" required>
                             </div>
                         </div>
 
                         <div class="d-flex gap-2">
                             <div class="mb-3">
-                                <label for="height" class="form-label">Height (cm)</label>
-                                <input type="number" class="form-control" id="height"
+                                <label for="height" class="form-label">Height (ft)</label>
+                                <input type="text" class="form-control numHeight" id="height"
                                     placeholder="Enter height" name="height" required>
                             </div>
 
@@ -106,8 +106,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="hips" class="form-label">Hips (cm)</label>
-                                <input type="number" class="form-control" id="hips"
+                                <label for="hips" class="form-label">Hips (ft)</label>
+                                <input type="text" class="form-control numHips" id="hips"
                                     placeholder="Enter hips" name="hips" required>
                             </div>
                         </div>
@@ -128,6 +128,21 @@
         </div>
     </div>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var fields = document.querySelectorAll('.numBust, .numWaist, .numHeight, .numHips');
+
+        fields.forEach(function(field) {
+            field.addEventListener('input', function() {
+                var curVal = this.value;
+                var sanitizedValue = curVal.replace(/[^0-9']/g, '');
+                this.value = sanitizedValue;
+            });
+        });
+    });
+</script>
+
 
 <style>
     #advocacyCont,
